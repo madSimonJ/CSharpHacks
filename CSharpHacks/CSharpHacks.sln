@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.202
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpHacks", "CSharpHacks\CSharpHacks.csproj", "{760A82C8-899F-4FB9-A096-FF906F35BB33}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpHacks.Tests", "CSharpHacks.Tests\CSharpHacks.Tests.csproj", "{4898FF42-1A8E-4A20-8E09-1372AEC0EDB0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{760A82C8-899F-4FB9-A096-FF906F35BB33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{760A82C8-899F-4FB9-A096-FF906F35BB33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{760A82C8-899F-4FB9-A096-FF906F35BB33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{760A82C8-899F-4FB9-A096-FF906F35BB33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4898FF42-1A8E-4A20-8E09-1372AEC0EDB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4898FF42-1A8E-4A20-8E09-1372AEC0EDB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4898FF42-1A8E-4A20-8E09-1372AEC0EDB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4898FF42-1A8E-4A20-8E09-1372AEC0EDB0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8A4D3C69-E47E-4C6C-8C2D-994E922D0A80}
+	EndGlobalSection
+EndGlobal
