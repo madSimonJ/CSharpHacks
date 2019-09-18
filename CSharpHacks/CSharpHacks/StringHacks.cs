@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
 namespace CSharpHacks
 {
@@ -25,5 +25,13 @@ namespace CSharpHacks
             float.TryParse(@this, out var result)
                 ? result
                 : 0;
+
+        public static string[] SplitOn(this string @this, string thingToSplitOn) =>
+            @this.Split(new string[] { thingToSplitOn }, StringSplitOptions.RemoveEmptyEntries);
+
+        public static IEnumerable<T> ParseFromCsv<T>(this string @this, string lineSpltter, string fieldSplitter, Func<string[], T> converter) =>
+            @this.SplitOn(lineSpltter)
+                .Select(x => x.SplitOn(fieldSplitter))
+                .Select(x => converter(x));
     }
 }
