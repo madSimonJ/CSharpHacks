@@ -1,7 +1,13 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>CSharpHacks</PackageId>
+    <Authors>Simon Painter</Authors>    
+    <Description>A repository to contain all of the C# Hacks you've ever thought of, anything that makes your coding life easier </Description>
+    <PackageVersion>1.0.0</PackageVersion>    
+    <PackageTags>ExtensionMethods</PackageTags>
+    <PackageProjectUrl>https://github.com/madSimonJ/CSharpHacks</PackageProjectUrl>
   </PropertyGroup>
 
 </Project>
