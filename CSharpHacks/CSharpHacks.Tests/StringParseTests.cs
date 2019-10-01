@@ -21,6 +21,7 @@ namespace CSharpHacks.Tests
         }
 
         [Fact]
+        [UseCulture("en-US")]
         public void Valid_double_should_parse_to_double()
         {
             var stringThatIsaDouble = "123.45";
@@ -35,6 +36,7 @@ namespace CSharpHacks.Tests
         }
 
         [Fact]
+        [UseCulture("en-US")]
         public void Valid_decimal_should_parse_to_decimal()
         {
             var stringThatIsaDecimal = "123.45";
@@ -49,6 +51,7 @@ namespace CSharpHacks.Tests
         }
 
         [Fact]
+        [UseCulture("en-US")]
         public void Valid_float_should_parse_to_float()
         {
             var stringThatIsaDecimal = "123.45";
