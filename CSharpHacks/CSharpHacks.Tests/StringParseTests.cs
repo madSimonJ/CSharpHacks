@@ -4,7 +4,7 @@ using FluentAssertions;
 
 namespace CSharpHacks.Tests
 {
-    public class UnitTest1
+    public class StringParseTests
     {
         [Fact]
         public void Valid_integer_should_parse_to_integer()
