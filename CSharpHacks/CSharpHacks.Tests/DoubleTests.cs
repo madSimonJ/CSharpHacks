@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using System;
 using Xunit;
 
 namespace CSharpHacks.Tests
@@ -42,6 +43,22 @@ namespace CSharpHacks.Tests
             double valueTwo = 0.34565875678;
 
             valueOne.IsCloseTo(valueTwo, 0.0001).Should().Be(false);
+        }
+
+        [Fact]
+        public void Double_ToDateTime_should_be_correct_datetime()
+        {
+            double value= 1570443335;
+            DateTime expected = new DateTime(2019,10,7,10,15,35);
+            value.ToDateTime().Should().Be(expected);
+        }
+
+        [Fact]
+        public void Double_ToDateTimeMs_should_be_correct_datetime()
+        {
+            double value= 1570443335000;
+            DateTime expected = new DateTime(2019,10,7,10,15,35);
+            value.ToDateTimeMs().Should().Be(expected);
         }
     }
 }
