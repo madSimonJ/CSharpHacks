@@ -64,5 +64,19 @@ namespace CSharpHacks.Tests
             var stringThatIsNotaDouble = "123a";
             stringThatIsNotaDouble.ToFloat().Should().Be(0.0F);
         }
-    }
+
+		[Fact]
+		public void string_without_embedded_numbers ()
+		{
+			var stringWithoutEmbeddedNumbers = "ABCDEFGHIJKLMNOpqrstuvwxyz";
+			stringWithoutEmbeddedNumbers.GetNumbers().Count().Should().Be(0);
+		}
+
+		[Fact]
+		public void string_with_embedded_numbers ()
+		{
+			var stringWithEmbeddedNumbers = "ABC-0.5DEFG12.456HIJKLMNOp1qrstuv0wxy3z";
+			stringWithEmbeddedNumbers.GetNumbers().Count().Should().Be(5);
+		}
+	}
 }
