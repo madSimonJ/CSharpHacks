@@ -1,6 +1,7 @@
 using System;
 using Xunit;
 using FluentAssertions;
+using System.Linq;
 
 namespace CSharpHacks.Tests
 {
