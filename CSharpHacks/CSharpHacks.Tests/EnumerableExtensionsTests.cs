@@ -94,5 +94,54 @@ namespace CSharpHacks.Tests
             result.Count.Should().Be(5);
             result.Should().NotContain(x => x.Value == "CCC");
         }
+        
+        [Fact]
+        public void Omit_should_omit_last_x_elements_of_an_enumerable()
+        {
+            int[] expected = {1, 2, 3, 4, 5, 6};
+            int[] test = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+            Assert.Equal(expected, test.Omit(4));
+        }
+
+        [Fact]
+        public void Omit_should_return_empty_enumerable_if_number_is_larger_than_size_of_enumerable()
+        {
+            int[] expected = { };
+            int[] test = {1, 2, 3, 4, 5, 6};
+            Assert.Equal(expected, test.Omit(1000));
+        }
+
+        [Fact]
+        public void Last_should_Return_last_x_elements()
+        {
+            int[] expected = {7, 8, 9};
+            int[] test = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+            Assert.Equal(expected, test.Last(3));
+        }
+
+        [Fact]
+        public void Last_should_return_whole_array_if_number_exceeds_element_size()
+        {
+            int[] expected = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+            int[] test = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+            Assert.Equal(expected, test.Last(1000));
+        }
+
+        [Fact]
+        public void Occurence_should_return_frequency_of_each_element()
+        {
+            string[] test = {"a", "ab", "a", "c", "b", "ab", "a", "hi", "my name", "a", "c"};
+            var expected = new Dictionary<string, int>()
+            {
+                {"a", 4},
+                {"ab", 2},
+                {"b",1},
+                {"c", 2},
+                {"hi", 1},
+                {"my name", 1}
+            };
+            Assert.Equal(expected, test.Occurrence());
+        }
+
     }
 }
