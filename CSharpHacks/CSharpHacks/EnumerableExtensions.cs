@@ -6,6 +6,34 @@ namespace CSharpHacks
 {
     public static class EnumerableExtensions
     {
+        public static IEnumerable<T> Omit<T>(this IEnumerable<T> x, int n)
+        {
+            return x.Reverse().Skip(n).Reverse();
+        }
+
+        public static IEnumerable<T> Last<T>(this IEnumerable<T> x, int n)
+        {
+            return x.Reverse().Take(n).Reverse();
+        }
+
+        public static IDictionary<T, int> Occurrence<T>(this IEnumerable<T> x)
+        {
+            var frequency = new Dictionary<T, int>();
+            foreach(var  t in x)
+            {
+                if (frequency.ContainsKey(t))
+                {
+                    frequency[t]++;
+                }
+                else
+                {
+                    frequency[t] = 1;
+                }
+            }
+            return frequency;
+        }
+
+        
         public static IEnumerable<TSource> DistinctBy<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
         {
             source.ArgumentNotNull(nameof(source));
@@ -73,5 +101,7 @@ namespace CSharpHacks
 
             return argumentValue;
         }
+        
+        
     }
 }
