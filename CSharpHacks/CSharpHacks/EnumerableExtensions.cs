@@ -91,8 +91,43 @@ namespace CSharpHacks
             }
         }
 
-        private static T ArgumentNotNull<T>(this T argumentValue, string argumentName = null)
-            where T : class
+        public static IEnumerable<IEnumerable<T>> Batch<T>(this IEnumerable<T> source, int batchSize)
+        {
+            source.ArgumentNotNull(nameof(source));
+
+            if (batchSize <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(batchSize));
+            }
+
+            T[] batch = null;
+            var elementIndex = 0;
+
+            foreach (var item in source)
+            {
+                if (batch == null)
+                {
+                    batch = new T[batchSize];
+                }
+
+                batch[elementIndex++] = item;
+
+                if (elementIndex == batchSize)
+                {
+                    yield return batch;
+
+                    batch = null;
+                    elementIndex = 0;
+                }
+            }
+
+            if (batch != null && elementIndex > 0)
+            {
+                yield return batch.Take(elementIndex).ToArray();
+            }            
+        }
+
+        private static T ArgumentNotNull<T>(this T argumentValue, string argumentName = null) where T : class
         {
             if (argumentValue == null)
             {
@@ -100,8 +135,6 @@ namespace CSharpHacks
             }
 
             return argumentValue;
-        }
-        
-        
+        }               
     }
 }

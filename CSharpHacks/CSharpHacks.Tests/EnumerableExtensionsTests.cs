@@ -143,5 +143,18 @@ namespace CSharpHacks.Tests
             Assert.Equal(expected, test.Occurrence());
         }
 
+        [Fact]
+        public void Batch_should_return_groups_of_given_elements()
+        {
+            int[] test = { 1, 2, 3, 4, 5, 6, 7};
+            var expected = new[] 
+            {
+                new[] {1,2},
+                new[] {3,4},
+                new[] {5,6},
+                new[] {7}
+            };
+            Assert.Equal(expected, test.Batch(2));
+        }
     }
 }
