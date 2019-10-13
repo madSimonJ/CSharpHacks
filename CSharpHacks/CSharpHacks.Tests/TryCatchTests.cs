@@ -9,13 +9,12 @@ namespace CSharpHacks.Tests
         [Fact]
         public void TryOrFailFast_PerformsAction()
         {
-            Action sut = () => TryCatchHacks.TryOrFailFast<InvalidOperationException>(
-                () =>
-                {
-                    var sum = 1 + 1;
-                    sum += sum;
-                }
-            );
+            Action doSum = () =>
+            {
+                var sum = 1 + 1;
+                sum += sum;
+            };
+            Action sut = () => doSum.TryOrFailFast<InvalidOperationException>();
 
             sut.Should().NotThrow<InvalidOperationException>();
         }
@@ -23,9 +22,8 @@ namespace CSharpHacks.Tests
         [Fact]
         public void TryOrThrow_ThrowsInvalidOperationException()
         {
-            Action sut = () => TryCatchHacks.TryOrThrow<InvalidOperationException>(
-                () => throw new InvalidOperationException()
-            );
+            Action throwException = () => throw new InvalidOperationException();
+            Action sut = () => throwException.TryOrThrow<InvalidOperationException>();
 
             sut.Should().Throw<InvalidOperationException>();
         }
@@ -33,9 +31,8 @@ namespace CSharpHacks.Tests
         [Fact]
         public void TryOrLogToConsole_ThrowsArgumentException_AndHandleItInternally()
         {
-            Action sut = () => TryCatchHacks.TryOrLogToConsole<ArgumentException>(
-                () => throw new ArgumentException("To Console")
-            );
+            Action throwException = () => throw new ArgumentException("To Console");
+            Action sut = () => throwException.TryOrLogToConsole<ArgumentException>();
 
             sut.Should().NotThrow<ArgumentException>();
         }
@@ -43,9 +40,8 @@ namespace CSharpHacks.Tests
         [Fact]
         public void TryOrLogToDebug_ThrowsArgumentException_AndHandleItInternally()
         {
-            Action sut = () => TryCatchHacks.TryOrLogToDebug<ArgumentException>(
-                () => throw new ArgumentException("To Debug")
-            );
+            Action throwException = () => throw new ArgumentException("To Debug");
+            Action sut = () => throwException.TryOrLogToDebug<ArgumentException>();
 
             sut.Should().NotThrow<ArgumentException>();
         }
