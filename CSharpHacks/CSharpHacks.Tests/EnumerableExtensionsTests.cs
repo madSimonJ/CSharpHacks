@@ -154,7 +154,14 @@ namespace CSharpHacks.Tests
                 new[] {5,6},
                 new[] {7}
             };
-            Assert.Equal(expected, test.Batch(2));
+
+            var result = test.Batch(2).ToArray();
+
+            result.Length.Should().Be(expected.Length);
+            for (int index = 0; index < expected.Length; index++)
+            {
+                result[index].Should().Equal(expected[index]);
+            }
         }
     }
 }
