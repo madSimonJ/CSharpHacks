@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Xunit;
 using FluentAssertions;
 using System.Linq;
@@ -66,18 +67,28 @@ namespace CSharpHacks.Tests
             stringThatIsNotaDouble.ToFloat().Should().Be(0.0F);
         }
 
-		[Fact]
-		public void string_without_embedded_numbers ()
-		{
-			var stringWithoutEmbeddedNumbers = "ABCDEFGHIJKLMNOpqrstuvwxyz";
-			stringWithoutEmbeddedNumbers.GetNumbers().Count().Should().Be(0);
-		}
+        [Fact]
+        public void string_without_embedded_numbers()
+        {
+            var stringWithoutEmbeddedNumbers = "ABCDEFGHIJKLMNOpqrstuvwxyz";
+            stringWithoutEmbeddedNumbers.GetNumbers().Count().Should().Be(0);
+        }
 
-		[Fact]
-		public void string_with_embedded_numbers ()
-		{
-			var stringWithEmbeddedNumbers = "ABC-0.5DEFG12.456HIJKLMNOp1qrstuv0wxy3z";
-			stringWithEmbeddedNumbers.GetNumbers().Count().Should().Be(5);
-		}
-	}
+        [Fact]
+        public void string_with_embedded_numbers()
+        {
+            var stringWithEmbeddedNumbers = "ABC-0.5DEFG12.456HIJKLMNOp1qrstuv0wxy3z";
+            stringWithEmbeddedNumbers.GetNumbers().Count().Should().Be(5);
+        }
+
+        [Fact]
+        public void string_valid_parse_from_csv()
+        {
+            var csv = "192,50\n55,2";
+            var dto = csv.ParseFromCsv("\n", ",", x => new ParseCsvDto() { StrA = x[0], StrB = x[1] }).ToList();
+
+            Assert.Contains(dto, x => x.StrA == "192" && x.StrB == "50");
+            Assert.Contains(dto, x => x.StrA == "55" && x.StrB == "2"); ;
+        }
+    }
 }
