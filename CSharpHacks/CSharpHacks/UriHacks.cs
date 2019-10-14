@@ -17,47 +17,17 @@ namespace CSharpHacks
             => url.AddParameter(new KeyValuePair<string, string>(key, value));
 
 
-        private static Uri _appendToQuery(Uri url, IEnumerable<KeyValuePair<string, string>> parameters)
+        private static Uri _appendToQuery(in Uri url, in IEnumerable<KeyValuePair<string, string>> parameters)
         {
-            //Create parameter string builder
-            var stringBuilder = new StringBuilder();
-
-            //Join parameters
-            foreach (var parameter in parameters)
-            {
+            //Create enumerable of string of key value
+            var parametersNormalized = parameters
                 //If key does not exist, skip parameter
-                if (string.IsNullOrWhiteSpace(parameter.Key))
-                {
-                    continue;
-                }
+                .Where(p => !string.IsNullOrWhiteSpace(p.Key))
+                //If value exists, append value, else only append key
+                .Select(p => !string.IsNullOrWhiteSpace(p.Value) ? $"{p.Key}={p.Value}" : p.Key);
 
-                //Append key
-                stringBuilder
-                    .Append(parameter.Key);
-
-                //If value exists, append value
-                if (!string.IsNullOrWhiteSpace(parameter.Value))
-                {
-                    stringBuilder
-                        .Append("=")
-                        .Append(parameter.Value);
-                }
-
-                //Mark beginning of next parameter
-                stringBuilder
-                    .Append("&");
-            }
-
-            //If there were no parameters, return url
-            //NOTE: Not checking at start of function, 
-            // as some pairs could "technically" exist as pairs of nulls
-            if (stringBuilder.Length == 0)
-            {
-                return url;
-            }
-
-            //Create parameter string without trailing '&'
-            var parametersJoined = stringBuilder.ToString(0, stringBuilder.Length - 1);
+            //Join parameters with '&'
+            var parametersJoined = string.Join("&", parametersNormalized);
 
 
             //Create Uri builder from url and get query string
@@ -65,7 +35,12 @@ namespace CSharpHacks
             var query = uriBuilder.Query;
 
             //Append or set parameters
-            if (query.Length > 0 && query[0] == '?')
+            if (parametersJoined.Length == 0)
+            {
+                //Do nothing, we still need to return a new Uri object though
+                // to be consistent in the object being returned.
+            }
+            else if (query.Length > 0 && query[0] == '?')
             {
                 uriBuilder.Query = $"{query.Substring(1)}&{parametersJoined}";
             }
