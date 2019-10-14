@@ -112,6 +112,30 @@ namespace CSharpHacks.Tests
         }
 
         [Fact]
+        public void Omit_should_be_affected_by_mutating_source()
+        {
+            int[] expected = { 0, 2, 3, 4, 5, 6 };
+            int[] test = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+            IEnumerable<int> result = test.Omit(4);
+            test[0] = 0;
+
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void Omit_should_update_with_growing_source()
+        {
+            int[] expected = { 1, 2, 3, 4, 5 };
+            List<int> test = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }.ToList();
+
+            IEnumerable<int> result = test.Omit(6);
+            test.Add(11);
+
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
         public void Last_should_Return_last_x_elements()
         {
             int[] expected = {7, 8, 9};
@@ -125,6 +149,30 @@ namespace CSharpHacks.Tests
             int[] expected = {1, 2, 3, 4, 5, 6, 7, 8, 9};
             int[] test = {1, 2, 3, 4, 5, 6, 7, 8, 9};
             Assert.Equal(expected, test.Last(1000));
+        }
+
+        [Fact]
+        public void Last_should_be_affected_by_mutating_source()
+        {
+            int[] expected = { 7, 8, 0 };
+            int[] test = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+
+            IEnumerable<int> result = test.Last(3);
+            test[8] = 0;
+
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void Last_should_update_with_growing_source()
+        {
+            int[] expected = { 8, 9, 10 };
+            List<int> test = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }.ToList();
+
+            IEnumerable<int> result = test.Last(3);
+            test.Add(10);
+
+            Assert.Equal(expected, result);
         }
 
         [Fact]
