@@ -98,81 +98,93 @@ namespace CSharpHacks.Tests
         [Fact]
         public void Omit_should_omit_last_x_elements_of_an_enumerable()
         {
-            int[] expected = {1, 2, 3, 4, 5, 6};
-            int[] test = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-            Assert.Equal(expected, test.Omit(4));
+            var expected = new[] { 1, 2, 3, 4, 5, 6};
+            var test = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+
+            var result = test.Omit(4);
+
+            result.Should().Equal(expected);
         }
 
         [Fact]
         public void Omit_should_return_empty_enumerable_if_number_is_larger_than_size_of_enumerable()
         {
-            int[] expected = { };
-            int[] test = {1, 2, 3, 4, 5, 6};
-            Assert.Equal(expected, test.Omit(1000));
+            var expected = new int[] { };
+            var test = new[] { 1, 2, 3, 4, 5, 6};
+
+            var result = test.Omit(1000);
+
+            result.Should().Equal(expected);
         }
 
         [Fact]
         public void Omit_should_be_affected_by_mutating_source()
         {
-            int[] expected = { 0, 2, 3, 4, 5, 6 };
-            int[] test = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            var expected = new[] { 0, 2, 3, 4, 5, 6 };
+            var test = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
             IEnumerable<int> result = test.Omit(4);
             test[0] = 0;
 
-            Assert.Equal(expected, result);
+            result.Should().Equal(expected);
         }
 
         [Fact]
         public void Omit_should_update_with_growing_source()
         {
-            int[] expected = { 1, 2, 3, 4, 5 };
-            List<int> test = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }.ToList();
+            var expected = new[] { 1, 2, 3, 4, 5 };
+            var test = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }.ToList();
 
             IEnumerable<int> result = test.Omit(6);
             test.Add(11);
 
-            Assert.Equal(expected, result);
+            result.Should().Equal(expected);
         }
 
         [Fact]
         public void Last_should_Return_last_x_elements()
         {
-            int[] expected = {7, 8, 9};
-            int[] test = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-            Assert.Equal(expected, test.Last(3));
+            var expected = new[] { 7, 8, 9};
+            var test = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9};
+
+            var result = test.Last(3);
+
+            result.Should().Equal(expected);
         }
 
         [Fact]
         public void Last_should_return_whole_array_if_number_exceeds_element_size()
         {
-            int[] expected = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-            int[] test = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-            Assert.Equal(expected, test.Last(1000));
+            var expected = new[] {1, 2, 3, 4, 5, 6, 7, 8, 9};
+            var test = new[] {1, 2, 3, 4, 5, 6, 7, 8, 9};
+
+            var result = test.Last(1000);
+
+            result.Should().Equal(expected);
         }
 
         [Fact]
         public void Last_should_be_affected_by_mutating_source()
         {
-            int[] expected = { 7, 8, 0 };
-            int[] test = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            var expected = new[] { 7, 8, 0 };
+            var test = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
             IEnumerable<int> result = test.Last(3);
             test[8] = 0;
 
-            Assert.Equal(expected, result);
+            result.Should().Equal(expected);
         }
 
         [Fact]
         public void Last_should_update_with_growing_source()
         {
-            int[] expected = { 8, 9, 10 };
-            List<int> test = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }.ToList();
+            var expected = new[] { 8, 9, 10 };
+            var test = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }.ToList();
 
             IEnumerable<int> result = test.Last(3);
             test.Add(10);
 
-            Assert.Equal(expected, result);
+            result.Should().Equal(expected);
         }
 
         [Fact]
