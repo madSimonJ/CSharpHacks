@@ -26,6 +26,9 @@ namespace CSharpHacks
             float.TryParse(@this, out var result)
                 ? result
                 : 0;
+        
+        public static string ValueOrDefault(this string @this, string value) =>
+            string.IsNullOrWhiteSpace(@this) ? value : @this;
 
         public static IEnumerable<double> GetNumbers(this string @this) =>
             Regex.Matches(@this, @"(-?\d+\.\d+|-?\d+)").Cast<Match>().Where(m => m.Success).Select(m => double.Parse(m.Value));
