@@ -37,5 +37,8 @@ namespace CSharpHacks
             @this.SplitOn(lineSpltter)
                 .Select(x => x.SplitOn(fieldSplitter))
                 .Select(x => converter(x));
+
+        public static string ReplaceFirst(this string @this, string oldValue, string newValue) =>
+            new Regex(Regex.Escape(oldValue)).Replace(@this, newValue, 1);
     }
 }
