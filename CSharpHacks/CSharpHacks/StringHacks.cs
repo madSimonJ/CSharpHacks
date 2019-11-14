@@ -28,7 +28,7 @@ namespace CSharpHacks
                 : 0;
 
         public static IEnumerable<double> GetNumbers(this string @this) =>
-            Regex.Matches(@this, @"(-?\d+\.\d+|-?\d+)").Cast<Match>().Where(m => m.Success).Select(m => double.Parse(m.Value));
+            Regex.Matches(@this, $@"-?\d+(\.\d+)?").Cast<Match>().Where(m => m.Success).Select(m => double.Parse(m.Value));
 
         public static string[] SplitOn(this string @this, string thingToSplitOn) =>
             @this.Split(new string[] { thingToSplitOn }, StringSplitOptions.RemoveEmptyEntries);
