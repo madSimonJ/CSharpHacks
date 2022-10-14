@@ -1,4 +1,4 @@
-namespace CSharpHacks.Tests
+namespace CSharpHacks.Tests.Helpers
 {
     internal class ParseCsvDto
     {

@@ -1,13 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard1.0</TargetFramework>
-    <PackageId>CSharpHacks</PackageId>
-    <Authors>Simon Painter</Authors>    
-    <Description>A repository to contain all of the C# Hacks you've ever thought of, anything that makes your coding life easier </Description>
-    <PackageVersion>1.0.0</PackageVersion>    
-    <PackageTags>ExtensionMethods</PackageTags>
-    <PackageProjectUrl>https://github.com/madSimonJ/CSharpHacks</PackageProjectUrl>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<LangVersion>10</LangVersion>
+		<PackageId>CSharpHacks</PackageId>
+		<Authors>Simon Painter</Authors>
+		<Description>A repository to contain all of the C# Hacks you've ever thought of, anything that makes your coding life easier </Description>
+		<PackageVersion>1.0.0</PackageVersion>
+		<PackageTags>ExtensionMethods</PackageTags>
+		<PackageProjectUrl>https://github.com/madSimonJ/CSharpHacks</PackageProjectUrl>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<InternalsVisibleTo Include="CSharpHacks.Tests" />
+	</ItemGroup>
 
 </Project>

@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Threading;
 using Xunit.Sdk;
 
-namespace CSharpHacks.Tests
+namespace CSharpHacks.Tests.Helpers
 {
     /// <summary>
     /// Apply this attribute to your test method to replace the
