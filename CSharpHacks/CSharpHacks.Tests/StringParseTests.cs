@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Xunit;
 using FluentAssertions;
 using System.Linq;
+using CSharpHacks.Tests.Helpers;
 
 namespace CSharpHacks.Tests
 {
