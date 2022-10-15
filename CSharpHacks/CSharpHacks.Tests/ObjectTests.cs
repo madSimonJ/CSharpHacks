@@ -27,6 +27,46 @@ namespace CSharpHacks.Tests
             }
         }
 
+        [Fact]
+        public void IsDefaultValue_ShouldReturnTrue_WhenInvokedOnNullReferenceTypes()
+        {
+            string sut = null;
+
+            var actual = sut.IsDefaultValue();
+
+            actual.Should().BeTrue();
+        }
+
+        [Fact]
+        public void IsDefaultValue_ShouldReturnFalse_WhenInvokedOnNonNullReferenceTypes()
+        {
+            const string sut = "aHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1kUXc0dzlXZ1hjUQ==";
+
+            var actual = sut.IsDefaultValue();
+
+            actual.Should().BeFalse();
+        }
+
+        [Fact]
+        public void IsDefaultValue_ShouldReturnTrue_WhenInvokedOnZeroIntegers()
+        {
+            const int sut = 0;
+
+            var actual = sut.IsDefaultValue();
+
+            actual.Should().BeTrue();
+        }
+
+        [Fact]
+        public void IsDefaultValue_ShouldReturnFalse_WhenInvokedOnNonZeroIntegers()
+        {
+            const int sut = 1;
+
+            var actual = sut.IsDefaultValue();
+
+            actual.Should().BeFalse();
+        }
+
         #region Dynamic Properties
 
         // ExpandoObject does not play nice with FluentAssertion's "Should()", as it is dynamically typed.
